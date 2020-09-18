@@ -1,14 +1,11 @@
 import React, { Component } from "react";
 import "./App.css";
 import Search from "./Search";
+import Photocontainer from "./Photocontainer";
 
 class App extends Component {
   state = {
     pictures: [],
-  };
-
-  componentDidMount = () => {
-    this.search();
   };
 
   search = (inputvalue) => {
@@ -19,13 +16,12 @@ class App extends Component {
         return response.json();
       })
       .then((json) => {
-        console.log(json);
-        let picArray = json.photos.photo.map((pic) => {
+        //console.log(json);
+        let picArray = json.photos.photo.map((pic, i) => {
           var farmId = pic.farm;
           var serverId = pic.server;
           var id = pic.id;
           var secret = pic.secret;
-         
           var srcPath =
             "https://farm" +
             farmId +
@@ -36,15 +32,11 @@ class App extends Component {
             "_" +
             secret +
             ".jpg";
-            
-          return (
-            <li key = {id}>
-              <img  alt="pix" src={srcPath}></img>
-            </li>
-          );
+
+          return { ...pic, srcPath }; //Rem:Kolla i loggen nu så ser du att det är objekt som loggas som innehåller id
         });
-        this.setState({ pictures: picArray});
-        
+
+        this.setState({ pictures: picArray });
       })
       .catch((error) => {
         console.log("Oops! Something went wrong...");
@@ -58,7 +50,7 @@ class App extends Component {
         <div className="container">
           <Search searchValue={this.search} />
           <div className="searchresults">
-            <ul className="searchresults__list">{this.state.pictures}</ul>
+            <Photocontainer photos={this.state.pictures} />
           </div>
         </div>
       </div>

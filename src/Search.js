@@ -2,15 +2,15 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 class Search extends Component {
-  state = {inputvalue: ""};
+  state = { inputvalue: "" };
 
   onSubmit = (e) => {
     e.preventDefault();
     this.props.searchValue(this.state.inputvalue);
-    this.setState({inputvalue:""});
+    this.setState({ inputvalue: "" });
   };
   onChange = (e) => {
-    this.setState({inputvalue: e.target.value});
+    this.setState({ inputvalue: e.target.value });
   };
 
   render() {
@@ -69,4 +69,3 @@ export default Search;
 Search.propTypes = {
   searchValue: PropTypes.func.isRequired,
 };
-
