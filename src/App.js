@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import "./App.css";
 import Search from "./Search";
 import Photocontainer from "./Photocontainer";
+import Gallery from "./Gallery";
 
 class App extends Component {
   state = {
-    pictures: [],
+    gallery: [],
+    images: [],
   };
 
   search = (inputvalue) => {
@@ -33,15 +35,31 @@ class App extends Component {
             secret +
             ".jpg";
 
-          return { ...pic, srcPath }; //Rem:Kolla i loggen nu så ser du att det är objekt som loggas som innehåller id
+          return { ...pic, srcPath };
         });
 
-        this.setState({ pictures: picArray });
+        this.setState({ gallery: picArray });
       })
       .catch((error) => {
         console.log("Oops! Something went wrong...");
         console.log(error);
       });
+  };
+
+  addToGallery = (farmId, serverId, id, secret) => {
+    let url =
+      "https://farm" +
+      farmId +
+      ".staticflickr.com/" +
+      serverId +
+      "/" +
+      id +
+      "_" +
+      secret +
+      ".jpg";
+    let selectedImagesStorage = this.state.images.concat(url);
+    console.log(selectedImagesStorage);
+    this.setState({ images: selectedImagesStorage });
   };
 
   render() {
@@ -50,8 +68,12 @@ class App extends Component {
         <div className="container">
           <Search searchValue={this.search} />
           <div className="searchresults">
-            <Photocontainer photos={this.state.pictures} />
+            <Photocontainer
+              photos={this.state.gallery}
+              addtoGallery={this.addToGallery}
+            />
           </div>
+          <Gallery myimages={this.state.images} />
         </div>
       </div>
     );

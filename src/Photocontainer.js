@@ -5,11 +5,22 @@ import PropTypes from "prop-types";
 class Photocontainer extends Component {
   render() {
     const pictures = this.props.photos;
-
+    
     return (
       <ul className="searchresults__list">
         {pictures.map((picture) => {
-          return <Photos key={picture.id} url={picture.srcPath} />;
+          return (
+            <Photos
+              key={picture.id}
+              url={picture.srcPath}
+              addPicsProp = {this.props.addtoGallery.bind(
+                picture.farm,
+                picture.server,
+                picture.id,
+                picture.secret, this
+              )}
+            />
+          );
         })}
       </ul>
     );
@@ -20,4 +31,5 @@ export default Photocontainer;
 //proptypes
 Photocontainer.propTypes = {
   photos: PropTypes.array.isRequired,
+  addtoGallery: PropTypes.func.isRequired,
 };
