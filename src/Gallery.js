@@ -8,8 +8,8 @@ class Gallery extends Component {
     return (
       <div>
         {myGallery.map((image) => (
-          <div >
-            <img key={image.id} src={image.url} alt={image.id}/>)
+          <div key={image.id}>
+            <img src={image.url} alt={image.id} />)
           </div>
         ))}
       </div>

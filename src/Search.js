@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 class Search extends Component {
-  images = this.props.images;
-
   state = { inputvalue: "" };
 
   onSubmit = (e) => {
@@ -15,11 +13,13 @@ class Search extends Component {
     this.setState({ inputvalue: e.target.value });
   };
 
-  onClick = (e) => {
-    console.log("Show Gallery is clicked!");
+  onClick(e) {
+    alert("unfinished. Gallery is not showing");
+  }
 
-  };
   render() {
+    //const images = this.props.myimages;
+
     return (
       <form className="controls" onSubmit={this.onSubmit}>
         <div className="searchField">

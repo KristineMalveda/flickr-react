@@ -57,7 +57,7 @@ class App extends Component {
       "_" +
       secret +
       ".jpg";
-    let selectedImagesStorage = this.state.images.concat(url);
+    let selectedImagesStorage = this.state.images.concat({ url, id });
     console.log(selectedImagesStorage);
     this.setState({ images: selectedImagesStorage });
   };

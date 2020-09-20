@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 class Photocontainer extends Component {
   render() {
     const pictures = this.props.photos;
-    
+
     return (
       <ul className="searchresults__list">
         {pictures.map((picture) => {
@@ -13,11 +13,12 @@ class Photocontainer extends Component {
             <Photos
               key={picture.id}
               url={picture.srcPath}
-              addPicsProp = {this.props.addtoGallery.bind(
+              addPicsProp={this.props.addtoGallery.bind(
+                this,
                 picture.farm,
                 picture.server,
                 picture.id,
-                picture.secret, this
+                picture.secret
               )}
             />
           );
