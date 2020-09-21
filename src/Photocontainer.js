@@ -13,7 +13,7 @@ class Photocontainer extends Component {
             <Photos
               key={picture.id}
               url={picture.srcPath}
-              addPicsProp={this.props.addtoGallery.bind(
+              addPicsProp={this.props.addtoImageGallery.bind(
                 this,
                 picture.farm,
                 picture.server,

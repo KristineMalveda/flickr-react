@@ -46,7 +46,7 @@ class App extends Component {
       });
   };
 
-  addToGallery = (farmId, serverId, id, secret) => {
+  addToImageGallery = (farmId, serverId, id, secret) => {
     let url =
       "https://farm" +
       farmId +
@@ -70,7 +70,7 @@ class App extends Component {
           <div className="searchresults">
             <Photocontainer
               photos={this.state.gallery}
-              addtoGallery={this.addToGallery}
+              addtoImageGallery={this.addToImageGallery}
             />
           </div>
           <Gallery myimages={this.state.images} />
